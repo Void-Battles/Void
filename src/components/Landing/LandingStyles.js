@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import VB_Background from '../../resources/VB_Background2.jpg'
+import VB_Background from '../../resources/LEATHERFACE.jpeg'
 
 export let HeroContainer = styled.section`
 	width: 100%;
@@ -49,7 +49,7 @@ export let Paragraph = styled.p`
 	font-weight: lighter;
 	line-height: normal;
 	font-size: 18px;
-	${props => props.secondary && `color: rgba(255,255,255,0.7);`};
+	${props => props.secondary && 'color: rgba(255,255,255,0.7);'};
 `
 
 export let SectionHeader = styled.h1`
