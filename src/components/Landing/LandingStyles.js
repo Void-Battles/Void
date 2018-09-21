@@ -63,12 +63,15 @@ export let SectionHeader = styled.h1`
 `
 
 export let DescriptionContainer = styled.section`
-	width: ${props => (props.width ? props.width : '90%')};
-	max-width: ${props => (props.width ? '800px' : '1200px')};
-	min-width: ${props => (props.width ? '600px' : '1200px')};
+	// width: ${props => (props.width ? props.width : '90%')};
+	// max-width: ${props => (props.width ? '800px' : '1200px')};
+	// min-width: ${props => (props.width ? '600px' : '1200px')};
+
+	width: 100%;
 	margin-top: ${props => (props.margin ? props.margin : '40px')};
 	display: flex;
-	justify-content: space-between;
+	flex-wrap: wrap;
+	justify-content: space-around;
 	align-items: center;
 `
 

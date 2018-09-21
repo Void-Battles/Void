@@ -10,7 +10,7 @@ export let HeaderContainer = styled.div`
     z-index: 1;
 
     section {
-        width: 30%;
+        width: 100%;
         height: 100%;
         display: flex;
         align-items: center;
@@ -18,7 +18,7 @@ export let HeaderContainer = styled.div`
 `
 
 export let NavContainer = styled.section`
-    width: 50% !important;
+    width: 30% !important;
     display: flex;
     justify-content: space-between;
 `
