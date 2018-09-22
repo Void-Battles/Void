@@ -5,6 +5,7 @@ import TeamRanks from './TeamRanks'
 import TeamRoster from './TeamRoster'
 import TeamMatches from './TeamMatches'
 import TeamTournaments from './TeamTournaments'
+import { Context } from '../../ContextAPI'
 
 class Team extends React.Component {
     constructor() {
@@ -13,6 +14,10 @@ class Team extends React.Component {
         this.state = {
 
         }
+    }
+
+    componentDidMount() {
+        this.props.setHeaderTab('my-team')
     }
 
     render() {
@@ -28,4 +33,4 @@ class Team extends React.Component {
     }
 }
 
-export default Team
+export default () => <Context.Consumer>{context => <Team setHeaderTab={context.setHeaderTab}/>}</Context.Consumer>

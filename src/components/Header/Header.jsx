@@ -23,15 +23,20 @@ class Header extends React.Component {
         {isUserLoggedIn ? (
           <NavContainer>
             <Link to={'/home'} style={{ height: '100%' }}>
-              <NavOptions selected={selectedTab === 'my-team'}>
+              <NavOptions selected={selectedTab === 'tournaments'}>
                 TOURNAMENTS
               </NavOptions>
             </Link>
-            <Link to={'/register-team'} style={{ height: '100%' }}>
-              <NavOptions selected={selectedTab === 'tournaments'}>
+            {this.props.doesUserHaveTeam ? <Link to={'/my-team'} style={{ height: '100%' }}>
+              <NavOptions selected={selectedTab === 'my-team'}>
                 MY TEAM
               </NavOptions>
-            </Link>
+            </Link> :
+            <Link to={'/register-team'} style={{ height: '100%' }}>
+              <NavOptions selected={selectedTab === 'register-team'}>
+                CREATE TEAM
+              </NavOptions>
+            </Link>}
             <Link to={'/login'} style={{ height: '100%' }}>
               <NavOptions selected={selectedTab === 'profile'}>
                 MY PROFILE
@@ -61,7 +66,7 @@ class Header extends React.Component {
 export default () => (
   <Context.Consumer>
     {context => (
-      <Header selectedTab={context.state.selectedTab} isUserLoggedIn={context.state.isUserLoggedIn} />
+      <Header selectedTab={context.state.selectedTab} isUserLoggedIn={context.state.isUserLoggedIn} doesUserHaveTeam={context.state.isUserLoggedIn ? context.state.userInfo.team_id : false}/>
     )}
   </Context.Consumer>
 )

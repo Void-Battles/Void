@@ -1,11 +1,11 @@
 import styled from 'styled-components'
-import ProfileBackground from '../../resources/ProfileBackground.jpeg'
+import ProfileBackground from '../../resources/profile_background.jpeg'
 
 export let ProfileBackgroundContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: url('https://www298.lunapic.com/do-not-link-here-use-hosting-instead/15375697126234436?9860606');
+	background: url(${ProfileBackground});
 	background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;

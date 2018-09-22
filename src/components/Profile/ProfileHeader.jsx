@@ -19,16 +19,15 @@ import {
 class ProfileHeader extends React.Component {
   render() {
     console.log(this.props)
+    const { vb_username, email, profile_pic, team_id } = this.props
     return (
       <ProfileBackgroundContainer>
         <ProfileContentsContainer>
           <div style={{ display: 'flex' }}>
             <ProfilePicture
               src={
-                this.props.profile_pic
-                  ? require(`../../resources/survivors/${
-                      this.props.profile_pic
-                    }.png`)
+                profile_pic
+                  ? require(`../../resources/survivors/${profile_pic}.png`)
                   : ''
               }
               alt=""
@@ -42,14 +41,14 @@ class ProfileHeader extends React.Component {
                   alt=""
                 />
                 <h1 style={{ textTransform: 'uppercase' }}>
-                  {this.props.vb_username}
+                  {vb_username}
                 </h1>
               </UsernameContainer>
 
               <UsernameContainer>
                 <img src={UplayLogo} alt="" />
                 <h2 style={{ textTransform: 'uppercase' }}>
-                  {this.props.email}
+                  {email}
                 </h2>
               </UsernameContainer>
 
@@ -73,21 +72,21 @@ class ProfileHeader extends React.Component {
           </div>
           <Link to="/vb-teams/BrettlyC">
             <TeamIconContainer>
-              {!this.props.team_id ? (
+              {!team_id ? (
                 <ProfileButton color="#7ED321" style={{ height: 80 }}>
                   <img src={AddFriendIcon} alt="" />
                   <h1>REGISTER</h1>
                 </ProfileButton>
               ) : (
-                  <Link to='/my-profile'>
+                <Link to="/my-profile">
                   <TeamIcon
                     src={
-                      'http://flaticons.net/gd/makefg.php?i=icons/Application/User-Profile.png&r=255&g=255&b=255'
+                      'https://cdn-eslgaming.akamaized.net/play/eslgfx/gfx/logos/teams/12125000/12125408_medium.jpg'
                     }
                     alt=""
                   />
-                  <h1>{this.props.team_id.team_name}</h1>
-                  </Link>
+                  <h1>{team_id.team_name}</h1>
+                </Link>
               )}
             </TeamIconContainer>
           </Link>
