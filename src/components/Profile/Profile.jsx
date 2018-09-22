@@ -27,7 +27,7 @@ class Profile extends Component {
   render() {
     return (
       <PageContainer>
-        <ProfileHeader vb_username={this.state.vb_username} email={this.state.email} profile_pic={this.state.profile_pic} />
+        <ProfileHeader vb_username={this.state.vb_username} email={this.state.email} profile_pic={this.state.profile_pic} team_id={this.state.team_id}/>
 
         <ProfileRanks />
 
