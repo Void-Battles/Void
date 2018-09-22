@@ -31,7 +31,8 @@ class RegisterTeam extends Component {
   constructor() {
     super();
     this.state = {
-      team_name: ''
+      team_name: '',
+      didCreate: false
     };
   }
 
@@ -48,6 +49,7 @@ class RegisterTeam extends Component {
   createTeam = () => {
       axios.post(`${backendURL}/create-team`, this.state, { headers: {'client-secret': this.props.authToken}}).then(response => {
         this.props.updateTeams(response.data)
+        this.setState({ didCreate: true })
       })
   }
 
