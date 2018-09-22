@@ -27,7 +27,7 @@ class Header extends React.Component {
                 TOURNAMENTS
               </NavOptions>
             </Link>
-            <Link to={'/vb-teams'} style={{ height: '100%' }}>
+            <Link to={'/register-team'} style={{ height: '100%' }}>
               <NavOptions selected={selectedTab === 'tournaments'}>
                 MY TEAM
               </NavOptions>

@@ -40,6 +40,12 @@ class MyProvider extends React.Component {
     this.setState({ isUserLoggedIn: true, userInfo })
   }
 
+  updateTeams = (teamObj) => {
+    const { userInfo } = this.state
+    userInfo.team_id = teamObj
+    this.setState({ userInfo })
+  }
+
   setHeaderTab = tab => {
     // const tempArray = this.state.selectedTab.slice(0)
     // for (let i = 0; i < tempArray.length; i++) {
@@ -56,6 +62,7 @@ class MyProvider extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <Context.Provider
         value={{
@@ -63,7 +70,8 @@ class MyProvider extends React.Component {
           logInUser: this.logInUser,
           logOutUser: this.logOutUser,
           setHeaderTab: this.setHeaderTab,
-          handleLogin: this.handleLogin
+          handleLogin: this.handleLogin,
+          updateTeams: this.updateTeams
         }}
       >
         {this.props.children}

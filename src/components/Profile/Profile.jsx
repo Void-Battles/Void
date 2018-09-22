@@ -14,6 +14,7 @@ class Profile extends Component {
 
   componentDidMount() {
     this.props.setHeaderTab('profile')
+    console.log(this.props)
 
     if (this.props.match.params.profile_id) {
       axios.get(`${backendURL}/vb-profile/${this.props.match.params.profile_id}`).then(response => {

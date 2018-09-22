@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import UplayLogo from "../../resources/uplay-logo.png";
-import AddFriendIcon from "../../resources/GreenAddFriend.png";
-import MessageIcon from "../../resources/BlueMessage.png";
-import InviteIcon from "../../resources/PurpleInvite.png";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import UplayLogo from '../../resources/uplay-logo.png'
+import AddFriendIcon from '../../resources/GreenAddFriend.png'
+import MessageIcon from '../../resources/BlueMessage.png'
+import InviteIcon from '../../resources/PurpleInvite.png'
 import {
   ProfileBackgroundContainer,
   ProfileContentsContainer,
@@ -14,21 +14,22 @@ import {
   ProfileButton,
   TeamIconContainer,
   TeamIcon
-} from "./ProfileStyles";
+} from './ProfileStyles'
 
 class ProfileHeader extends React.Component {
   render() {
+    console.log(this.props)
     return (
       <ProfileBackgroundContainer>
         <ProfileContentsContainer>
-          <div style={{ display: "flex" }}>
+          <div style={{ display: 'flex' }}>
             <ProfilePicture
               src={
                 this.props.profile_pic
                   ? require(`../../resources/survivors/${
                       this.props.profile_pic
                     }.png`)
-                  : ""
+                  : ''
               }
               alt=""
             />
@@ -36,18 +37,18 @@ class ProfileHeader extends React.Component {
               <UsernameContainer>
                 <img
                   src={
-                    "http://flaticons.net/gd/makefg.php?i=icons/Application/User-Profile.png&r=255&g=255&b=255"
+                    'http://flaticons.net/gd/makefg.php?i=icons/Application/User-Profile.png&r=255&g=255&b=255'
                   }
                   alt=""
                 />
-                <h1 style={{ textTransform: "uppercase" }}>
+                <h1 style={{ textTransform: 'uppercase' }}>
                   {this.props.vb_username}
                 </h1>
               </UsernameContainer>
 
               <UsernameContainer>
                 <img src={UplayLogo} alt="" />
-                <h2 style={{ textTransform: "uppercase" }}>
+                <h2 style={{ textTransform: 'uppercase' }}>
                   {this.props.email}
                 </h2>
               </UsernameContainer>
@@ -78,22 +79,22 @@ class ProfileHeader extends React.Component {
                   <h1>REGISTER</h1>
                 </ProfileButton>
               ) : (
-                <React.Fragment>
+                  <Link to='/my-profile'>
                   <TeamIcon
                     src={
-                      "http://flaticons.net/gd/makefg.php?i=icons/Application/User-Profile.png&r=255&g=255&b=255"
+                      'http://flaticons.net/gd/makefg.php?i=icons/Application/User-Profile.png&r=255&g=255&b=255'
                     }
                     alt=""
                   />
-                  <h1>StaticVoid</h1>
-                </React.Fragment>
+                  <h1>{this.props.team_id.team_name}</h1>
+                  </Link>
               )}
             </TeamIconContainer>
           </Link>
         </ProfileContentsContainer>
       </ProfileBackgroundContainer>
-    );
+    )
   }
 }
 
-export default ProfileHeader;
+export default ProfileHeader

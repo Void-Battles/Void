@@ -5,10 +5,11 @@ export let ProfileBackgroundContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: url('${ProfileBackground}');
+	background: url('https://www298.lunapic.com/do-not-link-here-use-hosting-instead/15375697126234436?9860606');
 	background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
+	background-position-y: -130px;
 	height: 500px;
 
 	@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
