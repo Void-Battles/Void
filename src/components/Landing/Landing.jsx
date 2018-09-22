@@ -17,6 +17,7 @@ import {
   PurpleText,
   HeroButton
 } from '../../GlobalStyles'
+import { Context } from '../../ContextAPI'
 
 import EqualSign from '../../resources/equal-sign.png'
 import Chat from '../../resources/chat.png'
@@ -24,7 +25,16 @@ import Feedback from '../../resources/feedback.png'
 import Cup from '../../resources/cup.png'
 import LevelUp from '../../resources/level-up.png'
 
-let Landing = () => {
+class Landing extends React.Component {
+  componentDidMount = () => this.props.setHeaderTab('home')
+  render () {
+    return (
+      <LandingComponent />
+    )
+  }
+}
+
+const LandingComponent = () => {
   return (
     <PageContainer>
       <HeroContainer>
@@ -124,4 +134,4 @@ let Landing = () => {
   )
 }
 
-export default Landing
+export default () => <Context.Consumer>{context => <Landing setHeaderTab={context.setHeaderTab} />}</Context.Consumer>

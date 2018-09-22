@@ -24,7 +24,7 @@ class ProfileHeader extends React.Component {
 					<div style={{ display: 'flex' }}>
 						<ProfilePicture
 							src={
-								'https://yt3.ggpht.com/a-/AJLlDp1LiubffewpzsMU9HycThcMirYgcoXIglT3hw=s900-mo-c-c0xffffffff-rj-k-no'
+								this.props.profile_pic ? require(`../../resources/survivors/${this.props.profile_pic}.png`) : ''
 							}
 							alt=""
 						/>
@@ -36,12 +36,12 @@ class ProfileHeader extends React.Component {
 									}
 									alt=""
 								/>
-								<h1>BRETTLY CLAWFIELD</h1>
+								<h1 style={{textTransform: 'uppercase'}}>{this.props.vb_username}</h1>
 							</UsernameContainer>
 
 							<UsernameContainer>
 								<img src={UplayLogo} alt="" />
-								<h2>BRETTLYC</h2>
+								<h2 style={{textTransform: 'uppercase'}}>{this.props.email}</h2>
 							</UsernameContainer>
 
 							<ProfileButtonsContainer>

@@ -9,8 +9,10 @@ class MyProvider extends React.Component {
     super()
 
     this.state = {
+      isUserLoggedIn: false,
+      userInfo: null,
       isLoggedIn: false,
-      selectedTab: [false, false, false, false, false],
+      selectedTab: 'home',
       userData: {
         uplay: 'BrettlyC',
         vb_username: 'BrettlyClawfield'
@@ -34,18 +36,23 @@ class MyProvider extends React.Component {
     })
   }
 
+  handleLogin = (userInfo) => {
+    this.setState({ isUserLoggedIn: true, userInfo })
+  }
+
   setHeaderTab = tab => {
-    const tempArray = this.state.selectedTab.slice(0)
-    for (let i = 0; i < tempArray.length; i++) {
-      if (tab === i) {
-        tempArray[i] = true
-      } else {
-        tempArray[i] = false
-      }
-    }
-    this.setState({
-      selectedTab: tempArray
-    })
+    // const tempArray = this.state.selectedTab.slice(0)
+    // for (let i = 0; i < tempArray.length; i++) {
+    //   if (tab === i) {
+    //     tempArray[i] = true
+    //   } else {
+    //     tempArray[i] = false
+    //   }
+    // }
+    // this.setState({
+    //   selectedTab: tempArray
+    // })
+    this.setState({ selectedTab: tab })
   }
 
   render() {
@@ -55,7 +62,8 @@ class MyProvider extends React.Component {
           state: this.state,
           logInUser: this.logInUser,
           logOutUser: this.logOutUser,
-          setHeaderTab: this.setHeaderTab
+          setHeaderTab: this.setHeaderTab,
+          handleLogin: this.handleLogin
         }}
       >
         {this.props.children}
