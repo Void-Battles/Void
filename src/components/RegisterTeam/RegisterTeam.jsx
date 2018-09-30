@@ -47,7 +47,7 @@ class RegisterTeam extends Component {
   }
 
   createTeam = () => {
-      axios.post(`${backendURL}/create-team`, this.state, { headers: {'client-secret': this.props.authToken}}).then(response => {
+      axios.post(`${backendURL}/api/team/create-team`, this.state, { headers: {'client-secret': this.props.authToken}}).then(response => {
         this.props.updateTeams(response.data)
         this.setState({ didCreate: true })
       })

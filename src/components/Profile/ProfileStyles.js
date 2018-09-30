@@ -220,7 +220,7 @@ export let MatchesContainer = styled.div`
 export let ContainerTitle = styled.h1`
 	font-size: 24px;
 	font-weight: bolder;
-	margin-bottom: 5px;
+	height: 15%;
 `
 
 export let MatchesContent = styled.div`

@@ -18,7 +18,6 @@ import {
 
 class ProfileHeader extends React.Component {
   render() {
-    console.log(this.props)
     const { vb_username, email, profile_pic, team_id } = this.props
     return (
       <ProfileBackgroundContainer>
@@ -70,7 +69,7 @@ class ProfileHeader extends React.Component {
               </ProfileButtonsContainer>
             </ProfileContent>
           </div>
-          <Link to="/vb-teams/BrettlyC">
+          {this.props.team_id &&
             <TeamIconContainer>
               {!team_id ? (
                 <ProfileButton color="#7ED321" style={{ height: 80 }}>
@@ -78,7 +77,7 @@ class ProfileHeader extends React.Component {
                   <h1>REGISTER</h1>
                 </ProfileButton>
               ) : (
-                <Link to="/my-profile">
+                <Link to={`/vb-team/${this.props.team_id.team_name}`}>
                   <TeamIcon
                     src={
                       'https://cdn-eslgaming.akamaized.net/play/eslgfx/gfx/logos/teams/12125000/12125408_medium.jpg'
@@ -88,8 +87,8 @@ class ProfileHeader extends React.Component {
                   <h1>{team_id.team_name}</h1>
                 </Link>
               )}
-            </TeamIconContainer>
-          </Link>
+            </TeamIconContainer>}
+
         </ProfileContentsContainer>
       </ProfileBackgroundContainer>
     )

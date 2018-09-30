@@ -16,6 +16,6 @@ export default (
     <Route component={Profile} path="/vb-profile/:profile_name" />
     <Route component={RegisterTeam} path="/register-team" />
     <Route component={Team} path="/my-team" />
-    <Route component={Team} path="/view-team/:team_name" />
+    <Route component={Team} path="/vb-team/:team_name" />
   </Switch>
 )
