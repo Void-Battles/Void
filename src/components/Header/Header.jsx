@@ -2,12 +2,24 @@ import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import { Context } from '../../ContextAPI'
-import { HeaderContainer, NavContainer, NavOptions } from './HeaderStyles'
+import { HeaderContainer, NavContainer, NavOptions, BellIcon, NotificationBox, TeamContainer } from './HeaderStyles'
 import { LogoContainer } from '../../GlobalStyles'
 import { Link } from 'react-router-dom'
 import { logInUser, logOutUser } from '../../ducks/reducer'
+import { backendURL } from '../../urls'
 
 class Header extends React.Component {
+  state = {
+    showNotifications: false
+  }
+
+  handleAccept(invite_id) {
+    console.log(invite_id)
+    axios.post(`${backendURL}/api/invite/acceptInvite/${invite_id}`, null, {
+      headers: { 'token': this.props.userInfo.auth_token }
+    }).then((response) => console.log(response))
+  }
+
   render() {
     const { selectedTab, isUserLoggedIn, handleLogin } = this.props
 
@@ -42,6 +54,7 @@ class Header extends React.Component {
                 MY PROFILE
               </NavOptions>
             </Link>
+            <NavOptions><BellIcon src={require('../../resources/bell-icon.svg')} onClick={() => this.setState({ showNotifications: !this.state.showNotifications })}></BellIcon></NavOptions>
           </NavContainer>
         ) : (
           <NavContainer>
@@ -58,6 +71,21 @@ class Header extends React.Component {
             </Link>
           </NavContainer>
         )}
+        { this.state.showNotifications && <NotificationBox>
+          { this.props.userInfo.pending_invites.map(invite => {
+            return <TeamContainer>
+            <section>
+              <img src={require(`../../resources/team_icons/${invite.team_info[0].team_pic}.png`)}></img>
+              <h1>{ invite.team_info[0].team_name }</h1>
+            </section>
+            <section style={{ justifyContent: "space-between" }}>
+              <button style={{ backgroundColor: "forestgreen", color: "white", fontWeight: "bolder" }} onClick={() => this.handleAccept(invite.url_id) }>Accept</button>
+              <button style={{ backgroundColor: "red", color: "white", fontWeight: "lighter" }}>Deny</button>
+            </section>
+          </TeamContainer>
+          })}
+
+        </NotificationBox> }
       </HeaderContainer>
     )
   }

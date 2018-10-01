@@ -21,7 +21,7 @@ class TeamRoster extends React.Component {
                   <h1>{vb_username}</h1>
                 </PlayerContainer>
               </Link>
-            )) : <h1>Nothing Here...</h1>}
+            )) : <PlayerContainer></PlayerContainer>}
         </RosterContent>
       </RosterContainer>
     )

@@ -18,8 +18,8 @@ class Team extends React.Component {
         team_name: '',
         team_pic: null,
         captain: null,
-        members: [],
-        shouldRedirect: true
+        members: null,
+        shouldRedirect: false
     }
   }
 
