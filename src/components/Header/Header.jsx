@@ -75,8 +75,8 @@ class Header extends React.Component {
           { this.props.userInfo.pending_invites.map(invite => {
             return <TeamContainer>
             <section>
-              <img src={require(`../../resources/team_icons/${invite.team_info[0].team_pic}.png`)}></img>
-              <h1>{ invite.team_info[0].team_name }</h1>
+              <img src={require(`../../resources/team_icons/${invite.team_info.team_pic}.png`)}></img>
+              <h1>{ invite.team_info.team_name }</h1>
             </section>
             <section style={{ justifyContent: "space-between" }}>
               <button style={{ backgroundColor: "forestgreen", color: "white", fontWeight: "bolder" }} onClick={() => this.handleAccept(invite.url_id) }>Accept</button>
