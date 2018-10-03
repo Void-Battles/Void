@@ -79,7 +79,7 @@ class Header extends React.Component {
               <h1>{ invite.team_info.team_name }</h1>
             </section>
             <section style={{ justifyContent: "space-between" }}>
-              <button style={{ backgroundColor: "forestgreen", color: "white", fontWeight: "bolder" }} onClick={() => this.handleAccept(invite.url_id) }>Accept</button>
+              <button style={{ backgroundColor: "forestgreen", color: "white", fontWeight: "bolder" }} onClick={() => this.handleAccept(invite.invite_id) }>Accept</button>
               <button style={{ backgroundColor: "red", color: "white", fontWeight: "lighter" }}>Deny</button>
             </section>
           </TeamContainer>
