@@ -1,19 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 import {
   RankContainer,
   RankContent,
   TeamRepContainer,
   ViewRatingsButton,
   TeamRepContent
-} from "../Profile/ProfileStyles";
-import TeamRoaster from "./TeamRoster";
-import { RosterContent, PlayerContainer } from "./TeamStyles";
+} from '../Profile/ProfileStyles'
+import TeamRoaster from './TeamRoster'
+import { RosterContent, PlayerContainer } from './TeamStyles'
+import InviteUser from '../Popups/InviteUser'
 
 class TeamRanks extends React.Component {
+  state = { showInviteUser: false }
   render() {
     return (
       <RankContainer>
+        {this.state.showInviteUser && <InviteUser handleClose={() => this.setState({ showInviteUser: false })} />}
         <RankContent>
           <h1>TEAM LEADER</h1>
           {this.props.captain && (
@@ -25,7 +28,7 @@ class TeamRanks extends React.Component {
                       ? require(`../../resources/survivors/${
                           this.props.captain.profile_pic
                         }.png`)
-                      : ""
+                      : ''
                   }
                   alt=""
                 />
@@ -47,7 +50,7 @@ class TeamRanks extends React.Component {
                     key={key}
                   />
                 ))}
-                <EmptyButton length={this.props.members.length} />
+                <EmptyButton length={this.props.members.length} onClick={() => this.setState({ showInviteUser: true })}/>
               </React.Fragment>
             ) : <EmptyButton length={0} />}
 
@@ -55,48 +58,49 @@ class TeamRanks extends React.Component {
           <React.Fragment>
             this.props.members.map(({vb_username, profile_pic}, profileIndex) => {
               return
-              
+
               </React.Fragment>
-            }) : 
-            Array(this.props.members.length ? this.props.members.length - 4 : 4).fill().map(position => <img 
-              src={require('../../resources/add-user-button.svg')} 
-              alt="" 
+            }) :
+            Array(this.props.members.length ? this.props.members.length - 4 : 4).fill().map(position => <img
+              src={require('../../resources/add-user-button.svg')}
+              alt=""
               style={{height: '70%', border: '1px solid black', padding: '10px'}}
             />)}
             </section> */}
           </section>
         </RosterContent>
       </RankContainer>
-    );
+    )
   }
 }
 
-const EmptyButton = ({length}) => Array(
+const EmptyButton = ({length, onClick}) => Array(
   4 - length
 )
   .fill()
   .map(position => (
     <img
     key={position}
-      src={require("../../resources/add-user-button.svg")}
+      src={require('../../resources/add-user-button.svg')}
       alt=""
       style={{
-        height: "70%",
-        border: "1px solid black",
-        padding: "10px"
+        height: '70%',
+        border: '1px solid black',
+        padding: '10px'
       }}
+      onClick={onClick}
     />
   ))
 
 const TeamProfile = ({ vb_username, key, profile_pic }) => (
-  <Link to={`/vb-profile/${vb_username}`} key={key} style={{ height: "100%" }}>
+  <Link to={`/vb-profile/${vb_username}`} key={key} style={{ height: '100%' }}>
     <img
       src={require(`../../resources/survivors/${profile_pic}.png`)}
       alt=""
-      style={{ height: "80%" }}
+      style={{ height: '80%' }}
     />
     <h1>{vb_username}</h1>
   </Link>
-);
+)
 
-export default TeamRanks;
+export default TeamRanks

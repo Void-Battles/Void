@@ -1,5 +1,5 @@
 import React from 'react'
-
+import axios from 'axios'
 // Create the Shareable Context
 export const Context = React.createContext()
 
@@ -37,6 +37,7 @@ class MyProvider extends React.Component {
   }
 
   handleLogin = (userInfo) => {
+    axios.defaults.headers.common['token'] = userInfo.auth_token;
     this.setState({ isUserLoggedIn: true, userInfo })
   }
 

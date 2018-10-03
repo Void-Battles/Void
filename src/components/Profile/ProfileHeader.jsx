@@ -69,7 +69,7 @@ class ProfileHeader extends React.Component {
               </ProfileButtonsContainer>
             </ProfileContent>
           </div>
-          {this.props.team_id &&
+          {team_id &&
             <TeamIconContainer>
               {!team_id ? (
                 <ProfileButton color="#7ED321" style={{ height: 80 }}>
@@ -77,14 +77,16 @@ class ProfileHeader extends React.Component {
                   <h1>REGISTER</h1>
                 </ProfileButton>
               ) : (
-                <Link to={`/vb-team/${this.props.team_id.team_name}`}>
+                <Link to={`/vb-team/${team_id.team_name}`} style={{height: '100%'}}>
                   <TeamIcon
                     src={
-                      'https://cdn-eslgaming.akamaized.net/play/eslgfx/gfx/logos/teams/12125000/12125408_medium.jpg'
+                      team_id
+                  ? require(`../../resources/team_icons/${team_id.team_pic}.png`)
+                  : ''
                     }
                     alt=""
                   />
-                  <h1>{team_id.team_name}</h1>
+                  <h1 style={{color: 'white'}}>{team_id.team_name}</h1>
                 </Link>
               )}
             </TeamIconContainer>}

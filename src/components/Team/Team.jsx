@@ -43,7 +43,7 @@ class Team extends React.Component {
     return (
       <PageContainer>
         <TeamHeader team_name={this.state.team_name} team_pic={this.state.team_pic} />
-        <TeamRanks captain={this.state.captain} members={this.state.members} />
+        <TeamRanks captain={this.state.captain} members={this.state.members} auth_token={this.props.auth_token} />
         {/* <TeamRoster members={this.state.members} /> */}
         <TeamMatches />
         <TeamTournaments />
