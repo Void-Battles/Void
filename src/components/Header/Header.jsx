@@ -10,16 +10,23 @@ import { backendURL } from '../../urls'
 
 class Header extends React.Component {
   state = {
-    showNotifications: false
+    showNotifications: false,
+    loading: false
   }
 
   handleAccept(invite_id) {
-    console.log(invite_id)
+    this.setState({ loading: true })
     axios.post(`${backendURL}/api/invite/acceptInvite/${invite_id}`, null, {
       headers: { 'token': this.props.userInfo.auth_token }
-    }).then((response) => console.log(response))
+    }).then((response) => this.setState({ showNotifications: false })).catch((err) => console.log(err))
   }
 
+  handleDeny(invite_id) {
+    axios.delete(`${backendURL}/api/invite/denyInvite/${invite_id}`, null, {
+      headers: { 'token': this.props.userInfo.auth_token }
+    }).then((response) => this.setState({ showNotifications: false })).catch((err) => console.log(err))
+  }
+  
   render() {
     const { selectedTab, isUserLoggedIn, handleLogin } = this.props
 
@@ -75,12 +82,14 @@ class Header extends React.Component {
           { this.props.userInfo.pending_invites.map(invite => {
             return <TeamContainer>
             <section>
+              <Link to={`/vb-team/${invite.team_info.team_name}`} style={{ display: 'flex', width: '100%', height: '100%', alignItems: 'center' }}>
               <img src={require(`../../resources/team_icons/${invite.team_info.team_pic}.png`)}></img>
               <h1>{ invite.team_info.team_name }</h1>
+              </Link>
             </section>
             <section style={{ justifyContent: "space-between" }}>
               <button style={{ backgroundColor: "forestgreen", color: "white", fontWeight: "bolder" }} onClick={() => this.handleAccept(invite.invite_id) }>Accept</button>
-              <button style={{ backgroundColor: "red", color: "white", fontWeight: "lighter" }}>Deny</button>
+              <button style={{ backgroundColor: "red", color: "white", fontWeight: "lighter" }} onClick={() => this.handleDeny(invite.invite_id) }>Deny</button>
             </section>
           </TeamContainer>
           })}

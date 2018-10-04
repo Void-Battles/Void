@@ -33,7 +33,7 @@ class InviteUser extends React.Component {
 
         }).catch(error => {
             alert(error.response.data)
-            this.setState({ isLoading: false })
+            this.setState({ isLoading: false, userName: '' })
         })
     }
 
