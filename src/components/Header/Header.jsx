@@ -63,7 +63,7 @@ class Header extends React.Component {
 
         {isUserLoggedIn ? (
           <NavContainer>
-            <Link to={"/home"} style={{ height: "100%" }}>
+            <Link to={"/tournament/t_75464"} style={{ height: "100%" }}>
               <NavOptions selected={selectedTab === "tournaments"}>
                 TOURNAMENTS
               </NavOptions>
@@ -98,7 +98,7 @@ class Header extends React.Component {
           </NavContainer>
         ) : (
           <NavContainer>
-            <Link to={"/home"} style={{ height: "100%" }}>
+            <Link to={"/tournament/t_75464"} style={{ height: "100%" }}>
               <NavOptions selected={selectedTab === "tournaments"}>
                 TOURNAMENTS
               </NavOptions>
