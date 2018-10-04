@@ -22,11 +22,11 @@ class MyProvider extends React.Component {
   }
 
   componentDidMount() {
-    // setInterval(() => {
-    //   if(this.state.isUserLoggedIn) {
-    //     this.getPendingInvites()
-    //   }
-    // }, 30000)
+    setInterval(() => {
+      if(this.state.isUserLoggedIn) {
+        this.getPendingInvites()
+      }
+    }, 30000)
   }
 
   getPendingInvites = () => {
