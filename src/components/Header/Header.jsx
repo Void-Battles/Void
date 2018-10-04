@@ -92,7 +92,7 @@ class Header extends React.Component {
             <NavOptions
               onClick={this.handleToggleModal}
             >
-            {this.props.userInfo.pending_invites.length !== 0 && <span className="pulse" />}
+            {this.props.isUserLoggedIn && this.props.userInfo.pending_invites.length !== 0 && <span className="pulse" />}
               <FaEnvelope size="22px" />
             </NavOptions>
           </NavContainer>
