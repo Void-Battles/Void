@@ -18,12 +18,12 @@ export let HeaderContainer = styled.div`
 `
 
 export let NavContainer = styled.section`
-    width: 30% !important;
+    width: 35% !important;
     display: flex;
     justify-content: space-between;
 `
 
-export let NavOptions = styled.h1`
+export let NavOptions = styled.div`
     height: 100%;
     display: flex;
     justify-content: center;
@@ -36,6 +36,7 @@ export let NavOptions = styled.h1`
     cursor: pointer;
     letter-spacing: 1.5px;
     transition: 0.1s all;
+    position: relative;
 
     ${props => props.selected && `
         color: #9c32f7;

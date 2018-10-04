@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { backendURL } from './urls'
 // Create the Shareable Context
 export const Context = React.createContext()
 
@@ -18,6 +19,22 @@ class MyProvider extends React.Component {
         vb_username: 'BrettlyClawfield'
       }
     }
+  }
+
+  componentDidMount() {
+    // setInterval(() => {
+    //   if(this.state.isUserLoggedIn) {
+    //     this.getPendingInvites()
+    //   }
+    // }, 30000)
+  }
+
+  getPendingInvites = () => {
+    axios.get(backendURL + '/api/invite/getPendingInvites').then(response => {
+      const { userInfo } = this.state
+      userInfo.pending_invites = response.data
+      this.setState({ userInfo })
+    })
   }
 
   logInUser = (userData, token) => {
@@ -72,7 +89,8 @@ class MyProvider extends React.Component {
           logOutUser: this.logOutUser,
           setHeaderTab: this.setHeaderTab,
           handleLogin: this.handleLogin,
-          updateTeams: this.updateTeams
+          updateTeams: this.updateTeams,
+          getPendingInvites: this.getPendingInvites
         }}
       >
         {this.props.children}

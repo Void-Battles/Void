@@ -7,13 +7,15 @@ import ProfileTournaments from "./ProfileTournaments";
 import { Context } from "../../ContextAPI";
 import axios from "axios";
 import { backendURL } from "../../urls";
+import { Redirect } from 'react-router-dom'
 
 class Profile extends Component {
   state = {
     vb_username: "No Profile",
     email: "",
     profile_pic: "",
-    team_id: null
+    team_id: null,
+    shouldRedirect: false
   };
 
   componentDidMount() {
@@ -24,13 +26,19 @@ class Profile extends Component {
         .get(`${backendURL}/vb-profile/${this.props.match.params.profile_name}`)
         .then(response => {
           this.setState({ ...response.data });
-        });
+        }).catch(error => {
+          this.setState({ shouldRedirect: true })
+          alert(error.response.data)
+        })
     } else if (this.props.isUserLoggedIn) {
       this.setState({ ...this.props.userInfo });
     }
   }
 
   render() {
+    if(this.state.shouldRedirect) {
+      return <Redirect to='/' />
+    }
     return (
       <PageContainer>
         <ProfileHeader {...this.state} />

@@ -28,7 +28,7 @@ class Login extends Component {
   constructor() {
     super();
     this.state = {
-      vb_username: "The_K",
+      vb_username: "AnimeCon",
       password: "sadie",
       usernameError: "",
       passwordError: "",
