@@ -45,6 +45,7 @@ export let Header = styled.h1`
 	font-size: 40px;
 	font-weight: bolder;
 	margin: 40px 0 40px 0;
+	color: white;
 
 	@media only screen and (min-width: 1224px) {
 		font-size: 36px;

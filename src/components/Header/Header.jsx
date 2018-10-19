@@ -63,7 +63,7 @@ class Header extends React.Component {
 
         {isUserLoggedIn ? (
           <NavContainer>
-            <Link to={"/tournament/t_75464"} style={{ height: "100%" }}>
+            <Link to={"/tournaments"} style={{ height: "100%" }}>
               <NavOptions selected={selectedTab === "tournaments"}>
                 TOURNAMENTS
               </NavOptions>
@@ -137,6 +137,9 @@ class Header extends React.Component {
                     </Link>
                   </section>
                   <section style={{ justifyContent: "space-between" }}>
+                  {invite.team_info.team_name === this.props.userInfo.team_id.team_name ? 
+                  <button>Dismiss</button> : 
+                  <React.Fragment>
                     <button
                       style={{
                         backgroundColor: "forestgreen",
@@ -157,6 +160,8 @@ class Header extends React.Component {
                     >
                       Deny
                     </button>
+                    </React.Fragment>
+                  }
                   </section>
                 </TeamContainer>
               );

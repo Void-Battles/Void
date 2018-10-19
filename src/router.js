@@ -7,6 +7,7 @@ import Profile from './components/Profile/Profile'
 import RegisterTeam from './components/RegisterTeam/RegisterTeam'
 import Team from './components/Team/Team'
 import Tournament from './components/Tournament/Tournament'
+import TournamentsLanding from './components/Tournament/TournamentsLanding'
 
 export default (
   <Switch>
@@ -19,6 +20,7 @@ export default (
     <Route component={Team} path="/my-team" />
     <Route component={Team} path="/vb-team/:team_name" />
     <Route component={Team} path="/vb-team/:team_name" />
+    <Route component={TournamentsLanding} path="/tournaments" />
     <Route component={Tournament} path="/vb-tournament/:tournament_id" />
   </Switch>
 )
