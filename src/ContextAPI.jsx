@@ -11,7 +11,7 @@ class MyProvider extends React.Component {
 
     this.state = {
       isUserLoggedIn: false,
-      userInfo: null,
+      userInfo: {},
       isLoggedIn: false,
       selectedTab: 'home',
       userData: {

@@ -136,10 +136,8 @@ class Header extends React.Component {
                       <h1>{invite.team_info.team_name}</h1>
                     </Link>
                   </section>
+
                   <section style={{ justifyContent: "space-between" }}>
-                  {invite.team_info.team_name === this.props.userInfo.team_id.team_name ? 
-                  <button>Dismiss</button> : 
-                  <React.Fragment>
                     <button
                       style={{
                         backgroundColor: "forestgreen",
@@ -160,8 +158,6 @@ class Header extends React.Component {
                     >
                       Deny
                     </button>
-                    </React.Fragment>
-                  }
                   </section>
                 </TeamContainer>
               );
