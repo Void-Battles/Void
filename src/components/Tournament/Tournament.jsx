@@ -17,7 +17,8 @@ class Tournament extends React.Component {
   state = {
     killer: 'cannibal',
     survivors: [],
-    map: 'MacMillan'
+    map: 'MacMillan',
+    tournament_name: ''
   }
   componentDidMount() {
     const { tournament_id } = this.props.match.params;
@@ -25,8 +26,8 @@ class Tournament extends React.Component {
       axios
         .get(backendURL + "/api/tournaments/findTournament/" + tournament_id)
         .then(response => {
-          const { killer, survivors, map } = response.data
-          this.setState({ killer, survivors, map })
+          const { killer, survivors, map, tournament_name } = response.data
+          this.setState({ killer, survivors, map, tournament_name })
         });
     }
   }
@@ -39,10 +40,11 @@ class Tournament extends React.Component {
               margin: "auto",
               fontSize: "44px",
               fontWeight: "bolder",
-              color: "white"
+              color: "white",
+              textTransform:'uppercase'
             }}
           >
-            THE TOURNAMENT
+            {this.state.tournament_name}
           </h1>
         </ImageContainer>
 
@@ -107,7 +109,7 @@ class Tournament extends React.Component {
           </InfoContainer>
         </KillerDescriptionContainer>
 
-        <ImageContainer pos='top' map={'https://vignette.wikia.nocookie.net/deadbydaylight/images/e/ee/Kate_hiding_from_Clown.jpg/revision/latest?cb=20180707020511'}>
+        <ImageContainer pos='top' map={require('../../resources/survivors/all_survivors.jpg')}>
           <h1
             style={{
               margin: "auto",

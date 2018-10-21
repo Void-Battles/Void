@@ -8,6 +8,7 @@ import RegisterTeam from './components/RegisterTeam/RegisterTeam'
 import Team from './components/Team/Team'
 import Tournament from './components/Tournament/Tournament'
 import TournamentsLanding from './components/Tournament/TournamentsLanding'
+import TournamentLists from './components/Tournaments/TournamentLists'
 
 export default (
   <Switch>
@@ -22,5 +23,6 @@ export default (
     <Route component={Team} path="/vb-team/:team_name" />
     <Route component={TournamentsLanding} path="/tournaments" />
     <Route component={Tournament} path="/vb-tournament/:tournament_id" />
+    <Route component={TournamentLists} path="/dbd-tournaments/:filter" />
   </Switch>
 )

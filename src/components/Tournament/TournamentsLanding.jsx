@@ -1,5 +1,7 @@
 import React from "react";
 import { Header, PurpleText } from "../../GlobalStyles";
+import { Context } from "../../ContextAPI";
+import { Link } from "react-router-dom";
 
 const UPCOMMING_URL =
   "https://cdn3.gamepur.com/images/guide/dead-by-daylight-nurse.jpg";
@@ -29,7 +31,8 @@ const styles = {
     position: "relative",
     width: "420px",
     height: "240px",
-    backgroundColor: "black"
+    backgroundColor: "black",
+    cursor: "pointer"
   },
   image: {
     width: "100%",
@@ -52,6 +55,9 @@ const styles = {
 };
 
 class TournamentsLanding extends React.Component {
+  componentDidMount() {
+    this.props.setHeaderTab("tournaments");
+  }
   render() {
     const { container, boxContainer, box, image, footer } = styles;
     return (
@@ -61,30 +67,42 @@ class TournamentsLanding extends React.Component {
         </Header>
 
         <div style={boxContainer}>
-          <section style={box}>
-            <img src={PREV_URL} alt="" style={image} />
-            <div style={footer}>
-              <h1 style={{ margin: "auto" }}>PREVIOUS TOURNAMENTS</h1>
-            </div>
-          </section>
+          <Link to="/dbd-tournaments/previous">
+            <section style={box}>
+              <img src={PREV_URL} alt="" style={image} />
+              <div style={footer}>
+                <h1 style={{ margin: "auto" }}>PREVIOUS TOURNAMENTS</h1>
+              </div>
+            </section>
+          </Link>
 
-          <section style={box}>
-            <img src={IMAGE_URL} alt="" style={image} />
-            <div style={footer}>
-              <h1 style={{ margin: "auto" }}>CURRENT TOURNAMENTS</h1>
-            </div>
-          </section>
+          <Link to="/dbd-tournaments/current">
+            <section style={box}>
+              <img src={IMAGE_URL} alt="" style={image} />
+              <div style={footer}>
+                <h1 style={{ margin: "auto" }}>CURRENT TOURNAMENTS</h1>
+              </div>
+            </section>
+          </Link>
 
-          <section style={box}>
-            <img src={UPCOMMING_URL} alt="" style={image} />
-            <div style={footer}>
-              <h1 style={{ margin: "auto" }}>UPCOMING TOURNAMENTS</h1>
-            </div>
-          </section>
+          <Link to="/dbd-tournaments/upcoming">
+            <section style={box}>
+              <img src={UPCOMMING_URL} alt="" style={image} />
+              <div style={footer}>
+                <h1 style={{ margin: "auto" }}>UPCOMING TOURNAMENTS</h1>
+              </div>
+            </section>
+          </Link>
         </div>
       </div>
     );
   }
 }
 
-export default TournamentsLanding;
+export default props => (
+  <Context.Consumer>
+    {context => (
+      <TournamentsLanding {...props} setHeaderTab={context.setHeaderTab} />
+    )}
+  </Context.Consumer>
+);

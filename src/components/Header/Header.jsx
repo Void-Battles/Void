@@ -98,7 +98,7 @@ class Header extends React.Component {
           </NavContainer>
         ) : (
           <NavContainer>
-            <Link to={"/tournament/t_75464"} style={{ height: "100%" }}>
+            <Link to={"/tournaments"} style={{ height: "100%" }}>
               <NavOptions selected={selectedTab === "tournaments"}>
                 TOURNAMENTS
               </NavOptions>
