@@ -18,16 +18,24 @@ const styles = {
     flexDirection: "column",
     padding: 20,
     boxSizing: "border-box",
-    height: "60vh",
+    height: "70vh",
     backgroundColor: "#383838"
   },
   boxContainer: {
     width: "100%",
     display: "flex",
     justifyContent: "space-around",
+    alignItems: 'center',
     marginTop: 20
   },
   box: {
+    position: "relative",
+    width: "400px",
+    height: "220px",
+    backgroundColor: "black",
+    cursor: "pointer"
+  },
+  biggerBox: {
     position: "relative",
     width: "420px",
     height: "240px",
@@ -45,7 +53,7 @@ const styles = {
     padding: 20,
     boxSizing: "border-box",
     textAlign: "center",
-    backgroundColor: "rgba(0,0,0,0.5)",
+    backgroundColor: "rgba(0,0,0,0.6)",
     display: "flex",
     width: "100%",
     fontWeight: "bolder",
@@ -59,7 +67,7 @@ class TournamentsLanding extends React.Component {
     this.props.setHeaderTab("tournaments");
   }
   render() {
-    const { container, boxContainer, box, image, footer } = styles;
+    const { container, boxContainer, biggerBox, box, image, footer } = styles;
     return (
       <div style={container}>
         <Header>
@@ -68,7 +76,7 @@ class TournamentsLanding extends React.Component {
 
         <div style={boxContainer}>
           <Link to="/dbd-tournaments/previous">
-            <section style={box}>
+            <section style={box} className='tournament_picture'>
               <img src={PREV_URL} alt="" style={image} />
               <div style={footer}>
                 <h1 style={{ margin: "auto" }}>PREVIOUS TOURNAMENTS</h1>
@@ -77,7 +85,7 @@ class TournamentsLanding extends React.Component {
           </Link>
 
           <Link to="/dbd-tournaments/current">
-            <section style={box}>
+            <section style={biggerBox} className='tournament_picture'>
               <img src={IMAGE_URL} alt="" style={image} />
               <div style={footer}>
                 <h1 style={{ margin: "auto" }}>CURRENT TOURNAMENTS</h1>
@@ -86,7 +94,7 @@ class TournamentsLanding extends React.Component {
           </Link>
 
           <Link to="/dbd-tournaments/upcoming">
-            <section style={box}>
+            <section style={box} className='tournament_picture'>
               <img src={UPCOMMING_URL} alt="" style={image} />
               <div style={footer}>
                 <h1 style={{ margin: "auto" }}>UPCOMING TOURNAMENTS</h1>

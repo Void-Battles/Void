@@ -10,6 +10,7 @@ import {
 import TeamRoaster from './TeamRoster'
 import { RosterContent, PlayerContainer } from './TeamStyles'
 import InviteUser from '../Popups/InviteUser'
+import { FaUserPlus } from 'react-icons/fa'
 
 class TeamRanks extends React.Component {
   state = { showInviteUser: false }
@@ -79,17 +80,18 @@ const EmptyButton = ({length, onClick}) => Array(
 )
   .fill()
   .map(position => (
-    <img
-    key={position}
-      src={require('../../resources/add-user-button.svg')}
-      alt=""
-      style={{
-        height: '70%',
-        border: '1px solid black',
-        padding: '10px'
-      }}
-      onClick={onClick}
-    />
+    // <img
+    // key={position}
+    //   src={require('../../resources/add-user-button.svg')}
+    //   alt=""
+    //   style={{
+    //     height: '70%',
+    //     border: '1px solid black',
+    //     padding: '10px'
+    //   }}
+    //   onClick={onClick}
+    // />
+    <FaUserPlus size='60px' style={{cursor: 'pointer'}} onClick={onClick} key={position}/>
   ))
 
 const TeamProfile = ({ vb_username, key, profile_pic }) => (

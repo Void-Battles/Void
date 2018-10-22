@@ -22,7 +22,7 @@ export default (
     <Route component={Team} path="/vb-team/:team_name" />
     <Route component={Team} path="/vb-team/:team_name" />
     <Route component={TournamentsLanding} path="/tournaments" />
-    <Route component={Tournament} path="/vb-tournament/:tournament_id" />
+    <Route component={Tournament} path="/vb-tournament/:tournament_name" />
     <Route component={TournamentLists} path="/dbd-tournaments/:filter" />
   </Switch>
 )
