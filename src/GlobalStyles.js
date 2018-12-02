@@ -67,4 +67,5 @@ export let HeroButton = styled.button`
 	font-size: 16px;
 	font-weight: lighter;
 	${props => props.link && 'cursor: pointer'};
+	cursor: pointer;
 `
