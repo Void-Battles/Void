@@ -9,10 +9,11 @@ import Team from './components/Team/Team'
 import Tournament from './components/Tournament/Tournament'
 import TournamentsLanding from './components/Tournament/TournamentsLanding'
 import TournamentLists from './components/Tournaments/TournamentLists'
-
+import AdminLogin from './components/AdminLogin/AdminLogin'
 export default (
   <Switch>
     <Route component={Landing} path="/" exact />
+    <Route component={AdminLogin} path="/admin_login" />
     <Route component={Login} path="/login" />
     <Route component={Register} path="/register" />
     <Route component={Profile} path="/my-profile" />
