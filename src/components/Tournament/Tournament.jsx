@@ -227,10 +227,42 @@ class Tournament extends React.Component {
               </Link>
             </TeamIconContainer>
             ))}
+                
         </KillerDescriptionContainer>
+        <div style={{display: 'flex', width: '70%', marginTop: 20, justifyContent: 'space-around'}}>
+            <RenderBracket bracket={this.state.bracket} />
+            </div>
       </div>
     );
   }
+}
+
+const RenderBracket = ({bracket}) => {
+  console.log(bracket)
+  if(bracket) {
+    return Object.keys(bracket).map(round => {
+      const teams = bracket[round]
+      console.log(round)
+      console.log(teams)
+      return <div>
+        <h1 style={{margin: 20}}>{round}</h1>
+        <div style={{width: '80%', height: 500, padding: 20, display: 'flex', flexDirection: 'column', justifyContent: 'center', borderBottom: '1px solid lightslategray'}}>
+        {teams.map((team, index) => {
+          if(team.final) {
+            return <h1 style={{color: 'gold', fontWeight: 'bolder'}}>WINNER: {team.winner}</h1>
+          } else {
+            return <div style={{display: 'flex', alignItems: 'center', flexDirection: 'column', marginBottom: 20, border: '1px solid lightslategray', padding: 10, boxSizing: 'border-box'}}>
+              <h1 style={{fontWeight: 'bolder', color: team.winner === team.team1 ? 'purple' : 'gray'}}>{team.team1}</h1>
+              <p style={{fontWeight: 'lighter', margin: '5px 0 5px 0'}}>VS</p>
+              <h1 style={{fontWeight: 'bolder', color: team.winner === team.team2 ? 'purple' : 'gray'}}>{team.team2}</h1>
+              </div>
+          }
+        })}
+        </div>
+      </div>
+    })
+  }
+  return null
 }
 
 export default Tournament;
