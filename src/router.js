@@ -12,14 +12,15 @@ import TournamentLists from './components/Tournaments/TournamentLists'
 
 export default (
   <Switch>
+
     <Route component={Landing} path="/" exact />
     <Route component={Login} path="/login" />
     <Route component={Register} path="/register" />
-    <Route component={Profile} path="/my-profile" />
+    {/* <Route component={AdminConsole} path="/admin-console" /> */}
+    <Route component={Profile} path="/vb-profile/my-profile" />
     <Route component={Profile} path="/vb-profile/:profile_name" />
     <Route component={RegisterTeam} path="/register-team" />
     <Route component={Team} path="/my-team" />
-    <Route component={Team} path="/vb-team/:team_name" />
     <Route component={Team} path="/vb-team/:team_name" />
     <Route component={TournamentsLanding} path="/tournaments" />
     <Route component={Tournament} path="/vb-tournament/:tournament_name" />

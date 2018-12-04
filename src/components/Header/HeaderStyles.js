@@ -3,11 +3,12 @@ import styled from 'styled-components'
 export let HeaderContainer = styled.div`
     height: 80px;
     width: 100%;
-    position: fixed;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     background-color: #2b2b2b;
     z-index: 1;
+    position: fixed;
 
     section {
         width: 100%;

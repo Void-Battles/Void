@@ -13,7 +13,6 @@ import {
   PageContainer,
   LogoContainer,
   SubHeader,
-  Header,
   PurpleText,
   HeroButton
 } from '../../GlobalStyles'
@@ -25,12 +24,12 @@ import Feedback from '../../resources/feedback.png'
 import Cup from '../../resources/cup.png'
 import LevelUp from '../../resources/level-up.png'
 
+import { Header, Button } from 'semantic-ui-react'
+
 class Landing extends React.Component {
   componentDidMount = () => this.props.setHeaderTab('home')
-  render () {
-    return (
-      <LandingComponent />
-    )
+  render() {
+    return <LandingComponent />
   }
 }
 
@@ -38,14 +37,12 @@ const LandingComponent = () => {
   return (
     <PageContainer>
       <HeroContainer>
-        <LogoContainer fromLanding>
-          <h1>VOID_</h1>
-          <h2>BATTLES</h2>
-        </LogoContainer>
+        <Header size="huge" color="violet" style={{fontSize: 50}}>
+          <span style={{ color: 'white' }}>VOID_</span>BATTLES
+        </Header>
         <h2
           style={{
             color: 'white',
-            padding: '20px 0 50px 0',
             letterSpacing: '1.4px',
             fontWeight: 'lighter'
           }}
@@ -55,16 +52,15 @@ const LandingComponent = () => {
 
         <HeroButtonsContainer>
           <Link to="/register">
-            <HeroButton link>REGISTER</HeroButton>
+            <Button inverted color='violet' size='big'>REGISTER</Button>
           </Link>
-          -
-          <HeroButton link>FIND A TEAM</HeroButton>
+          -<Button inverted color='violet' size='big'>TOURNAMENTS</Button>
         </HeroButtonsContainer>
       </HeroContainer>
 
       <WhatIsVoidBattlesContainer>
-        <Header>
-          What is <PurpleText light>VOID_</PurpleText>BATTLES?
+      <Header size="huge" color="violet">
+          What is <span style={{ color: 'white' }}>VOID_</span>BATTLES?
         </Header>
         <Paragraph width="600px">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat
@@ -125,7 +121,7 @@ const LandingComponent = () => {
       </WhatIsVoidBattlesContainer>
 
       <WhatIsVoidBattlesContainer>
-        <Header>READY TO OWN THE BATTLEFIELD?</Header>
+        <Header style={{color: 'white'}}>READY TO OWN THE BATTLEFIELD?</Header>
         <Link to="/register" style={{ marginTop: '40px' }}>
           <SignUpButton>REGISTER</SignUpButton>
         </Link>
@@ -134,4 +130,8 @@ const LandingComponent = () => {
   )
 }
 
-export default () => <Context.Consumer>{context => <Landing setHeaderTab={context.setHeaderTab} />}</Context.Consumer>
+export default () => (
+  <Context.Consumer>
+    {context => <Landing setHeaderTab={context.setHeaderTab} />}
+  </Context.Consumer>
+)

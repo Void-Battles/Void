@@ -16,10 +16,6 @@ export let HeroContainer = styled.section`
 	@media only screen and (min-width: 1824px) {
 		height: 600px;
 	}
-	h2 {
-		font-weight: lighter;
-		font-size: 40px;
-	}
 `
 
 export let HeroButtonsContainer = styled.section`
@@ -27,6 +23,7 @@ export let HeroButtonsContainer = styled.section`
 	justify-content: space-between;
 	width: 400px;
 	align-items: center;
+	margin-top: 10px;
 `
 
 
@@ -36,7 +33,8 @@ export let WhatIsVoidBattlesContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background-color: ${props => (props.secondary ? '#262626' : '#383838')};
+	// background-color: ${props => (props.secondary ? '#262626' : '#383838')};
+	background-color: ${props => (props.secondary ? '#262626' : '#1e1c21')};
 	color: white;
 	font-size: 18px;
 	padding: 30px 0 80px 0;

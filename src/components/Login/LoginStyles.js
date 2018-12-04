@@ -1,16 +1,39 @@
 import styled from 'styled-components'
 
-export let LoginContainer = styled.section`
+export let PageContainer = styled.section`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+background-color: #1E1C21;
+height: 100vh;
+width: 100vw
+
+@media only screen and (min-width: 1224px) {
+	padding: 50px 0 100px 0;
+}
+`
+export let Contents = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
-	padding: 100px 0 150px 0;
+	width: 550px;
+	height: 460px;
+	background-color: #383838;
+	padding: 45px;
 	box-sizing: border-box;
 
 	@media only screen and (min-width: 1224px) {
-		padding: 50px 0 100px 0;
+		width: 500px;
 	}
+`
+
+
+
+export let LoginContainer = styled.section`
+	width: 500px;
+	heigth: 500px;
+	background-color: red
 `
 
 export let Logo = styled.img`
@@ -22,20 +45,6 @@ export let Logo = styled.img`
 	}
 `
 
-export let Contents = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 550px;
-	height: 460px;
-	background-color: rgba(118, 118, 118, 0.34);
-	padding: 0 45px 0 45px;
-	box-sizing: border-box;
-
-	@media only screen and (min-width: 1224px) {
-		width: 500px;
-	}
-`
 
 export let InputContainer = styled.section`
 	width: 100%;
