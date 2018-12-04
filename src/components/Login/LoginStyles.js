@@ -7,7 +7,7 @@ align-items: center;
 justify-content: center;
 background-color: #1E1C21;
 height: 100vh;
-width: 100vw
+width: 100vw;
 
 @media only screen and (min-width: 1224px) {
 	padding: 50px 0 100px 0;
