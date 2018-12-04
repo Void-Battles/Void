@@ -1,5 +1,6 @@
 import React from 'react'
-
+import axios from 'axios'
+import { backendURL } from './urls'
 // Create the Shareable Context
 export const Context = React.createContext()
 
@@ -9,13 +10,31 @@ class MyProvider extends React.Component {
     super()
 
     this.state = {
+      isUserLoggedIn: false,
+      userInfo: {},
       isLoggedIn: false,
-      selectedTab: [false, false, false, false, false],
+      selectedTab: 'home',
       userData: {
         uplay: 'BrettlyC',
         vb_username: 'BrettlyClawfield'
       }
     }
+  }
+
+  componentDidMount() {
+    setInterval(() => {
+      if(this.state.isUserLoggedIn) {
+        this.getPendingInvites()
+      }
+    }, 30000)
+  }
+
+  getPendingInvites = () => {
+    axios.get(backendURL + '/api/invite/getPendingInvites').then(response => {
+      const { userInfo } = this.state
+      userInfo.pending_invites = response.data
+      this.setState({ userInfo })
+    })
   }
 
   logInUser = (userData, token) => {
@@ -34,28 +53,44 @@ class MyProvider extends React.Component {
     })
   }
 
+  handleLogin = (userInfo) => {
+    axios.defaults.headers.common['token'] = userInfo.auth_token;
+    this.setState({ isUserLoggedIn: true, userInfo })
+  }
+
+  updateTeams = (teamObj) => {
+    const { userInfo } = this.state
+    userInfo.team_id = teamObj
+    this.setState({ userInfo })
+  }
+
   setHeaderTab = tab => {
-    const tempArray = this.state.selectedTab.slice(0)
-    for (let i = 0; i < tempArray.length; i++) {
-      if (tab === i) {
-        tempArray[i] = true
-      } else {
-        tempArray[i] = false
-      }
-    }
-    this.setState({
-      selectedTab: tempArray
-    })
+    // const tempArray = this.state.selectedTab.slice(0)
+    // for (let i = 0; i < tempArray.length; i++) {
+    //   if (tab === i) {
+    //     tempArray[i] = true
+    //   } else {
+    //     tempArray[i] = false
+    //   }
+    // }
+    // this.setState({
+    //   selectedTab: tempArray
+    // })
+    this.setState({ selectedTab: tab })
   }
 
   render() {
+    console.log(this.state)
     return (
       <Context.Provider
         value={{
           state: this.state,
           logInUser: this.logInUser,
           logOutUser: this.logOutUser,
-          setHeaderTab: this.setHeaderTab
+          setHeaderTab: this.setHeaderTab,
+          handleLogin: this.handleLogin,
+          updateTeams: this.updateTeams,
+          getPendingInvites: this.getPendingInvites
         }}
       >
         {this.props.children}

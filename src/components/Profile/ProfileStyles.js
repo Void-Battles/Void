@@ -1,14 +1,15 @@
 import styled from 'styled-components'
-import ProfileBackground from '../../resources/ProfileBackground.jpeg'
+import ProfileBackground from '../../resources/profile_background.jpeg'
 
 export let ProfileBackgroundContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: url('${ProfileBackground}');
+	background: url(${ProfileBackground});
 	background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
+	background-position-y: -130px;
 	height: 500px;
 
 	@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
@@ -219,7 +220,7 @@ export let MatchesContainer = styled.div`
 export let ContainerTitle = styled.h1`
 	font-size: 24px;
 	font-weight: bolder;
-	margin-bottom: 5px;
+	height: 15%;
 `
 
 export let MatchesContent = styled.div`

@@ -3,30 +3,26 @@ import { Switch, Route } from 'react-router-dom'
 import Landing from './components/Landing/Landing.jsx'
 import Login from './components/Login/Login.jsx'
 import Register from './components/Register/Register'
-import Profile from './components/Profile/Profile.jsx'
-import { Authentication } from './components/Authentication'
-import NotFound from './components/PageNotFound/PageNotFound'
-import FindTeams from './components/FindTeams/FindTeams'
-import FindPlayers from './components/FindPlayers/FindPlayers'
+import Profile from './components/Profile/Profile'
+import RegisterTeam from './components/RegisterTeam/RegisterTeam'
 import Team from './components/Team/Team'
-import Compete from './components/Compete/Compete'
-import Logout from './components/Logout/Logout'
+import Tournament from './components/Tournament/Tournament'
+import TournamentsLanding from './components/Tournament/TournamentsLanding'
+import TournamentLists from './components/Tournaments/TournamentLists'
 
 export default (
   <Switch>
     <Route component={Landing} path="/" exact />
     <Route component={Login} path="/login" />
-    <Route component={Logout} path="/logout" />
     <Route component={Register} path="/register" />
-    <Route component={Authentication(FindPlayers)} path="/players" />
-    <Route component={Team} path="/vb-teams" />
-    <Route component={Team} path="/vb-teams/:team_id" />
-    <Route
-      component={Authentication(Profile)}
-      path="/vb-profile/:vb_username"
-    />
-    <Route component={Authentication(FindTeams)} path="/find-teams" />
-    <Route component={Compete} path="/compete" />
-    {/* <Route component={NotFound} path="*" /> */}
+    <Route component={Profile} path="/my-profile" />
+    <Route component={Profile} path="/vb-profile/:profile_name" />
+    <Route component={RegisterTeam} path="/register-team" />
+    <Route component={Team} path="/my-team" />
+    <Route component={Team} path="/vb-team/:team_name" />
+    <Route component={Team} path="/vb-team/:team_name" />
+    <Route component={TournamentsLanding} path="/tournaments" />
+    <Route component={Tournament} path="/vb-tournament/:tournament_name" />
+    <Route component={TournamentLists} path="/dbd-tournaments/:filter" />
   </Switch>
 )

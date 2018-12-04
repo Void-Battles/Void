@@ -21,6 +21,7 @@ import {
   PurpleText,
   HeroButton
 } from '../../GlobalStyles'
+import { backendURL } from '../../urls'
 
 class Register extends React.Component {
   constructor() {
@@ -28,7 +29,7 @@ class Register extends React.Component {
 
     this.state = {
       vb_username: '',
-      uplay: '',
+      steam_id: '',
       email: '',
       password: '',
       usernameError: '',
@@ -38,25 +39,21 @@ class Register extends React.Component {
   }
 
   componentDidMount() {
-    this.props.context.setHeaderTab(3)
+    this.props.setHeaderTab('login')
   }
 
   registerUser = () => {
-    let userInfo = {
-      vb_username: this.state.vb_username,
-      uplay: this.state.uplay,
-      email: this.state.email,
-      password: this.state.password
+    const { vb_username, steam_id, email, password } = this.state
+    const userInfo = {
+      vb_username,
+      steam_id,
+      email,
+      password
     }
     axios
-      .post(`http://localhost:4000/register_user`, userInfo)
+      .post(`${backendURL}/register_user`, userInfo)
       .then(response => {
-        if (response.data.userData) {
-          localStorage.setItem('auth_token', response.data.token)
-          this.props.logInUser(response.data.userData)
-        } else if (response.data.error) {
-          this.setState({ registerError: response.data.error })
-        }
+        this.props.handleLogin(response.data)
       })
   }
 
@@ -67,8 +64,8 @@ class Register extends React.Component {
   }
 
   render() {
-    if (this.props.context.state.loggedInStatus) {
-      return <Redirect to={`/vb-profile/${this.props.profile_id}`} />
+    if (this.props.isUserLoggedIn) {
+      return <Redirect to="/my-profile" />
     } else
       return (
         <PageContainer>
@@ -97,11 +94,11 @@ class Register extends React.Component {
               </InputContainer>
 
               <InputContainer>
-                <InputTitle>UPLAY NICKNAME</InputTitle>
+                <InputTitle><PurpleText>STEAM</PurpleText> URL OR ID</InputTitle>
                 <Input
                   value={this.state.uplay}
                   onChange={input =>
-                    this.updateUserRegistration('uplay', input.target.value)
+                    this.updateUserRegistration('steam_id', input.target.value)
                   }
                 />
                 <InputError>{this.state.usernameError}</InputError>
@@ -145,6 +142,6 @@ class Register extends React.Component {
 
 export default props => (
   <Context.Consumer>
-    {context => <Register context={context} {...props} />}
+    {context => <Register isUserLoggedIn={context.state.isUserLoggedIn} userInfo={context.state.userInfo} handleLogin={context.handleLogin} setHeaderTab={context.setHeaderTab} {...props} />}
   </Context.Consumer>
 )
