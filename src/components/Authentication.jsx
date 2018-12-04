@@ -13,22 +13,6 @@ let AuthenticatingContainer = styled.div`
 `
 
 export function Authentication(Component) {
-  // class ContextAuthenticate extends React.Component {
-  //   render() {
-  //     return (
-  //       <Context.Consumer>
-  //         {context => (
-  //           <Authenticate
-  //             context={context}
-  //             {...this.props}
-  //             component={Component}
-  //           />
-  //         )}
-  //       </Context.Consumer>
-  //     )
-  //   }
-  // }
-  // return ContextAuthenticate
   return props => (
     <Context.Consumer>
       {context => (
