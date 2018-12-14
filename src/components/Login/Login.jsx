@@ -48,7 +48,7 @@ class Login extends Component {
 
   Login = () => {
     const { vb_username, password } = this.state
-    axios.get(`${backendURL}/login/${new Buffer(JSON.stringify({vb_username, password})).toString('base64')}`).then(response => {
+    axios.get(`${backendURL}/api/login/${new Buffer(JSON.stringify({vb_username, password})).toString('base64')}`).then(response => {
       console.log('response here', response)
       this.props.handleLogin(response.data);
     }).catch((err) => alert(err.response.data))

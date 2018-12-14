@@ -23,7 +23,7 @@ class Profile extends Component {
 
     if (this.props.match.params.profile_name) {
       axios
-        .get(`${backendURL}/vb-profile/${this.props.match.params.profile_name}`)
+        .get(`${backendURL}/api/vb-profile/${this.props.match.params.profile_name}`)
         .then(response => {
           this.setState({ ...response.data });
         }).catch(error => {
