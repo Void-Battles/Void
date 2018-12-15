@@ -11,6 +11,7 @@ class MyProvider extends React.Component {
 
     this.state = {
       isUserLoggedIn: false,
+      isAdminLoggedIn: false,
       userInfo: {},
       isLoggedIn: false,
       selectedTab: 'home',
@@ -55,7 +56,14 @@ class MyProvider extends React.Component {
 
   handleLogin = (userInfo) => {
     axios.defaults.headers.common['token'] = userInfo.auth_token;
+    localStorage.setItem('userInfo', userInfo)
     this.setState({ isUserLoggedIn: true, userInfo })
+  }
+
+  handleAdminLogin = (adminInfo) => {
+    axios.defaults.headers.common['token'] = adminInfo.auth_token;
+    localStorage.setItem('adminInfo', adminInfo)
+    this.setState({ isAdminLoggedIn: true, adminInfo })
   }
 
   updateTeams = (teamObj) => {
@@ -89,6 +97,7 @@ class MyProvider extends React.Component {
           logOutUser: this.logOutUser,
           setHeaderTab: this.setHeaderTab,
           handleLogin: this.handleLogin,
+          handleAdminLogin: this.handleAdminLogin,
           updateTeams: this.updateTeams,
           getPendingInvites: this.getPendingInvites
         }}

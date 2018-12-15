@@ -47,17 +47,12 @@ class AdminLogin extends Component {
       Login = async () => {
         const { vb_username, password } = this.state
         try {
-            let loginUser = await axios.get(`${backendURL}/admin/login/${new Buffer(JSON.stringify({vb_username, password})).toString('base64')}`);
-            console.log(loginUser)
-            if(loginUser.data) {
-                this.props.handleAdminLogin(loginUser.data);
-                this.setState({redirect: true})
-                console.log(this.state)
+            let adminLogin = await axios.get(`${backendURL}/admin_login/admin/${new Buffer(JSON.stringify({vb_username, password})).toString('base64')}`);
+            if(adminLogin.data) {
+                this.props.handleAdminLogin(adminLogin);
             }
-        }
-        
-        catch {
-            console.log('Login Error')
+        } catch(err) {
+          alert('Nice Try Buddy')
         }
       };
     
