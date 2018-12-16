@@ -1,60 +1,60 @@
-import React from "react";
-import axios from "axios";
-import { backendURL } from "../../urls";
-import LEATHERFACE from "../../resources/LEATHERFACE.jpeg";
-import FENG from "../../resources/survivors/feng.png";
-import KATE from "../../resources/survivors/kate.png";
-import MEG from "../../resources/survivors/meg.png";
-import BILL from "../../resources/survivors/bill.png";
+import React from 'react'
+import axios from 'axios'
+import { backendURL } from '../../urls'
+import LEATHERFACE from '../../resources/LEATHERFACE.jpeg'
+import FENG from '../../resources/survivors/feng.png'
+import KATE from '../../resources/survivors/kate.png'
+import MEG from '../../resources/survivors/meg.png'
+import BILL from '../../resources/survivors/bill.png'
 import {
   MapDescriptionContainer,
   MapPictureContainer,
   ImageContainer,
   KillerDescriptionContainer,
   SurvivorContainer
-} from "./TournamentStyles";
-import { Header, PurpleText, SubHeader } from "../../GlobalStyles";
+} from './TournamentStyles'
+import { Header, PurpleText, SubHeader } from '../../GlobalStyles'
 import {
   Paragraph,
   InfoContainer,
   SignUpButton
-} from "../Landing/LandingStyles";
-import { FaSkull, FaPencilAlt, FaInfoCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+} from '../Landing/LandingStyles'
+import { FaSkull, FaPencilAlt, FaInfoCircle } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 import { TeamIconContainer, TeamIcon } from '../Profile/ProfileStyles'
 
 class Tournament extends React.Component {
   state = {
-    killer: "cannibal",
+    killer: 'cannibal',
     survivors: [],
-    map: "blood_lodge",
-    tournament_name: ""
-  };
+    map: 'blood_lodge',
+    tournament_name: ''
+  }
   componentDidMount() {
-    const { tournament_name } = this.props.match.params;
+    const { tournament_name } = this.props.match.params
     if (tournament_name) {
       axios
-        .get(backendURL + "/api/tournaments/findTournament/" + tournament_name)
+        .get(backendURL + '/api/tournaments/findTournament/' + tournament_name)
         .then(response => {
-          this.setState({ ...response.data });
-        });
+          this.setState({ ...response.data })
+        })
     }
   }
   render() {
-    console.log(this.state);
+    console.log(this.state)
     return (
-      <div style={{ width: "100%", height: "100%" }}>
+      <div style={{ width: '100%', height: '100%' }}>
         <ImageContainer
           map={require(`../../resources/maps/${this.state.map}.png`)}
           pos="bottom"
         >
           <h1
             style={{
-              margin: "auto",
-              fontSize: "44px",
-              fontWeight: "bolder",
-              color: "white",
-              textTransform: "uppercase"
+              margin: 'auto',
+              fontSize: '44px',
+              fontWeight: 'bolder',
+              color: 'white',
+              textTransform: 'uppercase'
             }}
           >
             {this.state.tournament_name}
@@ -94,10 +94,10 @@ class Tournament extends React.Component {
         >
           <h1
             style={{
-              margin: "auto",
-              fontSize: "44px",
-              fontWeight: "bolder",
-              color: "white"
+              margin: 'auto',
+              fontSize: '44px',
+              fontWeight: 'bolder',
+              color: 'white'
             }}
           >
             THE {this.state.killer.toUpperCase()}
@@ -135,14 +135,14 @@ class Tournament extends React.Component {
 
         <ImageContainer
           pos="top"
-          map={require("../../resources/survivors/all_survivors.jpg")}
+          map={require('../../resources/survivors/all_survivors.jpg')}
         >
           <h1
             style={{
-              margin: "auto",
-              fontSize: "44px",
-              fontWeight: "bolder",
-              color: "white"
+              margin: 'auto',
+              fontSize: '44px',
+              fontWeight: 'bolder',
+              color: 'white'
             }}
           >
             SURVIVORS
@@ -161,7 +161,7 @@ class Tournament extends React.Component {
           ))}
         </KillerDescriptionContainer>
 
-        <KillerDescriptionContainer style={{ backgroundColor: "#2b2b2b" }}>
+        <KillerDescriptionContainer style={{ backgroundColor: '#2b2b2b' }}>
           <InfoContainer>
             <FaSkull size="30px" />
             <SubHeader primary>THEIR GOALS</SubHeader>
@@ -194,75 +194,143 @@ class Tournament extends React.Component {
           <SubHeader>
             PARTICIPATE IN THIS <PurpleText>TOURNAMENT</PurpleText>
           </SubHeader>
-          <Link to="/register" style={{ margin: "20px 0 20px 0" }}>
+          <Link to="/register" style={{ margin: '20px 0 20px 0' }}>
             <SignUpButton>REGISTER</SignUpButton>
           </Link>
         </MapDescriptionContainer>
 
         <KillerDescriptionContainer
-          style={{ backgroundColor: "#2b2b2b", flexDirection: "column" }}
+          style={{ backgroundColor: '#2b2b2b', flexDirection: 'column' }}
         >
           <SubHeader>
             REGISTERED <PurpleText>TEAMS</PurpleText>
           </SubHeader>
-          {this.state.signed_up_teams &&
-            this.state.signed_up_teams.map(team => (
-            <TeamIconContainer>
-              <Link
-                to={`/vb-team/${team.team_name}`}
-                style={{ height: "100%" }}
-                key={team.team_name}
-              >
-                <TeamIcon
-                  src={
-                    team
-                      ? require(`../../resources/team_icons/${
-                          team.team_pic
-                        }.png`)
-                      : ""
-                  }
-                  alt=""
-                />
-                <h1 style={{ color: "white" }}>{team.team_name}</h1>
-              </Link>
-            </TeamIconContainer>
-            ))}
-                
+
+          <div
+            style={{
+              display: 'flex',
+              width: '90%',
+              justifyContent: 'space-around'
+            }}
+          >
+            {this.state.signed_up_teams &&
+              this.state.signed_up_teams.map(team => (
+                <div style={{ height: 200 }}>
+                  <TeamIconContainer>
+                    <Link
+                      to={`/vb-team/${team.team_name}`}
+                      style={{ height: '100%' }}
+                      key={team.team_name}
+                    >
+                      <TeamIcon
+                        src={
+                          team
+                            ? require(`../../resources/team_icons/${
+                                team.team_pic
+                              }.png`)
+                            : ''
+                        }
+                        alt=""
+                      />
+                      <h1 style={{ color: 'white' }}>{team.team_name}</h1>
+                    </Link>
+                  </TeamIconContainer>
+                </div>
+              ))}
+          </div>
         </KillerDescriptionContainer>
-        <div style={{display: 'flex', width: '70%', marginTop: 20, justifyContent: 'space-around'}}>
-            <RenderBracket bracket={this.state.bracket} />
-            </div>
+        <div
+          style={{
+            display: 'flex',
+            width: '100%',
+            backgroundColor: '#383838',
+            padding: 20,
+            boxSizing: 'border-box'
+            // justifyContent: 'space-around',
+            // alignItems: 'flex-start'
+          }}
+        >
+          <RenderBracket bracket={this.state.bracket} />
+        </div>
       </div>
-    );
+    )
   }
 }
 
-const RenderBracket = ({bracket}) => {
+const RenderBracket = ({ bracket }) => {
   console.log(bracket)
-  if(bracket) {
+  if (bracket) {
     return Object.keys(bracket).map(round => {
       const teams = bracket[round]
-      console.log(round)
-      console.log(teams)
-      return <div>
-        <h1 style={{margin: 20}}>{round}</h1>
-        <div style={{width: '80%', height: 500, padding: 20, display: 'flex', flexDirection: 'column', justifyContent: 'center', borderBottom: '1px solid lightslategray'}}>
-        {teams.map((team, index) => {
-          if(team.final) {
-            return <h1 style={{color: 'gold', fontWeight: 'bolder'}}>WINNER: {team.winner}</h1>
-          } else {
-            return <div style={{display: 'flex', alignItems: 'center', flexDirection: 'column', marginBottom: 20, border: '1px solid lightslategray', padding: 10, boxSizing: 'border-box'}}>
-              <h1 style={{fontWeight: 'bolder', color: team.winner === team.team1 ? 'purple' : 'gray'}}>{team.team1}</h1>
-              <p style={{fontWeight: 'lighter', margin: '5px 0 5px 0'}}>VS</p>
-              <h1 style={{fontWeight: 'bolder', color: team.winner === team.team2 ? 'purple' : 'gray'}}>{team.team2}</h1>
-              </div>
-          }
-        })}
+      return (
+        <div style={{width: 300, backgroundColor: 'rgba(0,0,0,0.3)', position: 'relative'}}>
+        <div style={{ position: 'absolute', margin: 20, color: 'white', fontSize: 20, fontWeight: 'bolder' }}>
+          <h1>{round.toUpperCase()}</h1>
+<p style={{fontSize: 14, color: 'mediumseagreen', marginTop: 5}}>Currently In-Game...</p>
+          </div>
+          <div
+            style={{
+              height: 600,
+              padding: 20,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-around',
+              color: 'white',
+              marginTop: 10
+            }}
+          >
+            {teams.map((team, index) => {
+              if (team.final) {
+                return (
+                  <h1 style={{ color: 'gold', fontWeight: 'bolder' }}>
+                    WINNER: {team.winner}
+                  </h1>
+                )
+              } else {
+                return (
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-around',
+                      flexDirection: 'column',
+                      marginBottom: 20,
+                      padding: 10,
+                      boxSizing: 'border-box',
+                      backgroundColor: 'rgba(0,0,0,0.3)',
+                      color: 'white',
+                      height: 90,
+                      position: 'relative'
+                    }}
+                  >
+                  <h1 style={{position: 'absolute', top: 0, marginTop: -20, fontSize: 16, color: 'gray', letterSpacing: -0.5, fontWeight: 'bolder', left: 0}}>MATCH {index + 1}</h1>
+                    <h1
+                      style={{
+                        fontWeight: 'bolder',
+                        color: team.winner === team.team1 ? 'purple' : 'white'
+                      }}
+                    >
+                      {team.team1}
+                    </h1>
+                    <hr style={{ width: '100%', backgroundColor: 'white', margin: '5px 0 5px 0' }}/>
+                    <h1
+                      style={{
+                        fontWeight: 'bolder',
+                        color: team.winner === team.team2 ? 'purple' : 'white'
+                      }}
+                    >
+                      {team.team2}
+                    </h1>
+                  </div>
+                )
+              }
+            })}
+          </div>
         </div>
-      </div>
+      )
     })
   }
   return null
 }
 
-export default Tournament;
+export default Tournament
